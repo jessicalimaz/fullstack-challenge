@@ -1,0 +1,11 @@
+POST http://localhost:3003/pizza/create
+Content-Type: application/json
+
+{
+    "name": "Italiana",
+    "price": "46"
+}
+
+###
+GET http://localhost:3003/pizza/all-pizzas
+Content-Type: application/json
