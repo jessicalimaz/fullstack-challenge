@@ -2,8 +2,8 @@ POST http://localhost:3003/pizza/create
 Content-Type: application/json
 
 {
-    "name": "Italiana",
-    "price": "46"
+    "name": "Brigadeiro",
+    "price": "38"
 }
 
 ###
@@ -15,7 +15,7 @@ POST http://localhost:3003/order/create
 Content-Type: application/json
 
 {
-    "name":"Lucas",
+    "name": "Gabi",
     "id_pizza": "1d884a12-2073-48f6-b5ca-2502f4c11cea",
     "qty_pizza": "3"
 }

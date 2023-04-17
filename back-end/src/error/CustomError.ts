@@ -4,3 +4,8 @@ export class CustomError extends Error{
     }
 }
 
+export class InvalidBody extends CustomError{
+    constructor(){
+        super(400, "Dados inválidos")
+    }
+}
