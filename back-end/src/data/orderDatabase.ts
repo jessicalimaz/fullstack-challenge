@@ -28,4 +28,18 @@ export class OrderDatabase extends BaseDatabase{
             throw new CustomError(400, error.message)
         }
     }
+
+    public getOrderDetails = async (id:string) =>{
+        try{
+            const orderDetails = await OrderDatabase.connection
+                .select("*")
+                .from(OrderDatabase.ORDER_TABLE)
+                .where({id})
+
+            return orderDetails
+
+        }catch(error:any){
+            throw new CustomError(400, error.message)
+        }
+    }
 }
