@@ -23,3 +23,7 @@ Content-Type: application/json
 ###
 GET http://localhost:3003/order/orders
 Content-Type: application/json
+
+###
+GET http://localhost:3003/order/orders/908ea935-3e68-4706-b9c8-7d4d4da39db7
+Content-Type: application/json

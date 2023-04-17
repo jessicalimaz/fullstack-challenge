@@ -37,4 +37,14 @@ export class OrderBusiness{
 
         }
     }
+
+    public getOrderDetails = async (id:string) =>{
+        try{
+            const orderDetails = await orderDatabase.getOrderDetails(id)
+            return orderDetails
+
+        }catch(error:any){
+            
+        }
+    }
 }
