@@ -47,6 +47,7 @@ export const Button = styled.button`
 `
 
 export const Card = styled.div`
+    min-width: 200px;
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -83,4 +84,12 @@ export const Card = styled.div`
     button:hover {
         background-color: #3e8e41;
     }
+`
+
+export const DivCard = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 `
