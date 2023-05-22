@@ -1,3 +1,4 @@
+import HeaderFix from "./components/Header";
 import { Router } from "./routes/Router";
 import { createGlobalStyle } from 'styled-components';
 
@@ -10,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div className="App">
+      <HeaderFix/>
       <Router/>
       <GlobalStyle/>
     </div>

@@ -1,49 +1,48 @@
 import { useState } from "react";
 import { BASE_URL } from "../../constants/URL";
 import UseRequestData from "../../hooks/useRequestData";
-import { Button, DivCard, Header } from "./style";
+import { Button, DivCard } from "./style";
 import Pizza from "../../components/Pizza";
+import { useNavigate } from "react-router-dom";
+import { goToOrder } from "../../routes/Coordinator";
 
 export default function Home() {
-    const [allPizzas, setAllPizzas] = useState([]);
     const [cart, setCart] = useState([])
-
-    const getAllPizzas = async () => {
-        const [data, error] = await UseRequestData(`${BASE_URL}/pizza/all-pizzas`);
-
-        if (data) {
-            setAllPizzas(data);
-        } else if (error) {
-            console.error(error);
-        }
-    };
-    getAllPizzas()
+    const [quantity, setQuantity] = useState(0);
+    const [data, error] = UseRequestData(`${BASE_URL}/pizza/all-pizzas`)
+    const navigate = useNavigate()
 
     const addToCart = (pizza) => {
-        setCart([...cart, pizza]);
+        setCart([...cart, pizza, quantity]);
+        setQuantity(0)
     }
-    console.log("CARRINHO", cart)
 
+    const handleQuantityChange = (event) => {
+        setQuantity(Number(event.target.value));
+      };
 
+    
+    //console.log("cart", cart)
+    localStorage.setItem('arrCart', JSON.stringify(cart))
+    
     return (
         <>
-            <Header>
-                <h1>PIZZA</h1><h1 id="delivery">DELIVERY</h1>
-            </Header>
-
             <DivCard>
-                {allPizzas && allPizzas.pizzas && allPizzas.pizzas.map((pizza) => {
+                {data && data.pizzas && data.pizzas.map((pizza) => {
                     return (
                         <Pizza key={pizza.id}
-                            pizza={pizza}
-                            addToCart={addToCart}
+                            name={pizza.name}
+                            price={pizza.price}
+                            addToCart={() => { addToCart(pizza.name) }}
+                            handleQuantityChange={handleQuantityChange}
+                            quantity={quantity}
                         />
                     )
                 })}
             </DivCard>
 
             <divButton>
-                <Button>FINALIZAR PEDIDO</Button>
+                <Button onClick={() => (goToOrder(navigate))}>FINALIZAR PEDIDO</Button>
             </divButton>
         </>
     )
